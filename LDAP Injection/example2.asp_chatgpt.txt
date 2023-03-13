@@ -1,0 +1,7 @@
+
+
+1. The LDAP server name is hardcoded, which can be exploited if the server location changes.
+2. The user input from the QueryString is not sanitized, which can lead to injection attacks.
+3. There is no input validation on the user input, which can lead to unexpected behavior or errors.
+4. The code does not authenticate the user before allowing access to LDAP data.
+5. The final "Response.Write" statement is not inside the loop, which will result in an error.

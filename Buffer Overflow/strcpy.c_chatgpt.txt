@@ -1,0 +1,3 @@
+
+
+The vulnerability in this code is a buffer overflow. The size of `str1` is only 10 bytes, but `str2` is 15 bytes long (including the null terminaing character). When `strcpy` is used to copy `str2` into `str1`, it overflows the buffer and overwrites adjacent memory, potentially causing unpredictable behavior, including crashes or allowing an attacker to execute malicious code. A safer approach would be to use `strncpy` and specify the size of `str1` to prevent buffer overflow vulnerabilities.

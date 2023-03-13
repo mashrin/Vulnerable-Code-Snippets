@@ -1,0 +1,5 @@
+
+
+The vulnerability in this code is that it uses the scanf function to read input from the user without any input validation or boundary checking. This makes the code susceptible to buffer overflow attacks. An attacker can enter a name that exceeds the size of the name array, which can cause memory corruption and possibly allow the attacker to execute malicious code. 
+
+To fix this, the code should use a safer input function such as fgets, and include input validation to ensure that the user input does not exceed the allocated buffer size. Additionally, the Sanitize function should be reviewed to ensure that it properly cleanses the user input of any potentially harmful characters.

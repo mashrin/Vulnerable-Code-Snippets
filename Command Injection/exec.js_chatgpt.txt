@@ -1,0 +1,9 @@
+
+
+1. Injection Vulnerability: In the '/ping' route, the user input `req.body.url` is directly passed to `exec()` command without proper input validation or sanitization. This can make the application vulnerable to command injection attacks.
+
+2. Unsanitized User Input: In the '/gzip' route, the user input `req.query.file_path` is concatenated with the 'gzip' command without sanitization, which can lead to path traversal attacks. Attackers can use this vulnerability to access sensitive files on the server or execute arbitrary code.
+
+3. Command Injection: In the '/run' route, the user input `req.params.cmd` is directly passed to the `spawn()` function without proper input validation or sanitization. This can make the application vulnerable to command injection attacks.
+
+To fix these vulnerabilities, input validation and sanitization should be implemented to ensure that the user input is safe before using it in commands. Also, using whitelisting approaches to restrict user input to a predefined set of values and avoiding the use of `exec()` function can further enhance the security of the application.

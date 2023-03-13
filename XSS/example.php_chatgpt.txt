@@ -1,0 +1,7 @@
+. '!';
+
+?>
+
+Potential vulnerability: Reflected Cross-Site Scripting (XSS) attack due to the lack of sanitization for the "name" variable. An attacker can inject malicious code into the "name" variable, which will be executed on the victim's browser when the page is loaded.
+
+Recommended solution: Sanitize the "name" variable before echoing it to the page. One way to do this is by using the htmlspecialchars() function to convert any special characters to their HTML entities. Another way is by using a validation library or function to ensure that the input only contains expected characters.

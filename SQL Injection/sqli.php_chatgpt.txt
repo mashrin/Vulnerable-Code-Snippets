@@ -1,0 +1,3 @@
+
+
+The code is vulnerable to SQL injection because it doesn't sanitize the user input. An attacker could pass malicious input to the $_GET['id'] parameter, which would be executed as part of the SQL query. Additionally, the SQL query result only returns a row count, making it blind. An attacker could exploit this by observing whether the server responds with "Yes!" or "No!" to determine if the query was successful or not.

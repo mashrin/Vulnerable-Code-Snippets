@@ -1,0 +1,11 @@
+
+
+The security vulnerability in this code is in the check() function. The if statement checking if user.isAdmin exists and is true is not secure as it does not verify the type of the property. An attacker can bypass the authentication by sending a JSON string as req.body.config with a constructor property set to prototype and an isAdmin property set to true.
+
+To fix this vulnerability, change the if statement to use the strict equality operator (===) to ensure the type is also checked. The fixed code should look like this:
+
+if (user.isAdmin === true) {
+  res.send('Welcome Admin')
+} else {
+  res.send('Welcome User')
+}

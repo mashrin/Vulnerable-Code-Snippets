@@ -1,0 +1,13 @@
+
+
+Potential security vulnerabilities:
+
+1. XSS vulnerability: The function `html_encode` does not properly sanitize user input, which could allow an attacker to inject malicious code on the webpage in the `welcome` variable.
+
+2. Open redirect vulnerability: The `SERVER_DOMAIN` variable is not specified, which means an attacker could potentially define it by injecting a URL with a redirect to a malicious site. 
+
+3. Insufficient validation checks: The `send_message` function does not perform any validation checks before sending a message to `window_ref`, which could allow an attacker to communicate with the window and perform unauthorized actions.
+
+4. Pop-up blocker bypass: The `open_window` function uses pop-ups to display the scoreboard. This could be blocked by a user's pop-up blocker, which could cause functionality issues. 
+
+5. Insecure handling of user input: The `check_guess` function sends the user's input via the `send_message` function without proper validation or encoding, which could allow an attacker to inject malicious code into the message payload.

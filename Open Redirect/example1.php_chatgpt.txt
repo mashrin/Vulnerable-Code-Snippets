@@ -1,0 +1,3 @@
+
+
+The security vulnerability in this code snippet is that it is not validating the input received from the user through the $_GET['go'] variable. An attacker can manipulate the value of the "go" parameter to redirect the user to a malicious website. This can result in phishing attacks, malware downloads, or other forms of attacks on the user's device. To prevent this, it is essential to sanitize and validate the user input before using it to redirect the user.

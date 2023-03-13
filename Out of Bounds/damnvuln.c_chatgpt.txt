@@ -1,0 +1,31 @@
+
+
+1. Integer overflow: 
+   - In line 29, the variables `img.width` and `img.height` are added together without checking for potential integer overflow, which can lead to unexpected behavior or memory corruption. 
+
+2. No data buffer size/malloc success check:
+   - In line 33, `memcpy()` is called without first checking whether the allocated memory for `buff1` is large enough to store the data in `img.data`. This can lead to memory corruption or segmentation faults.
+
+3. Double free:
+   - In line 36, `buff1` is freed twice if `size1/2==0`. This can lead to a memory-related error or even a segmentation fault.
+
+4. Use after free:
+   - In line 42, if `size1` is equal to 123456, `buff1[0]` is modified after `buff1` is freed, leading to undefined behavior or a segmentation fault.
+
+5. Integer underflow:
+   - In line 48, `img.height` is subtracted from `img.width` without checking for potential integer underflow, which can lead to unexpected behavior or memory corruption.
+
+6. Out of bound read (stack):
+   - In line 54, the variable `OOBR_stack` is assigned the value of `buff3[size3+100]`, which reads memory out of bounds in the `buff3` array. This can lead to memory-related errors or even a segmentation fault.
+
+7. Out of bound read (heap):
+   - In line 55, the variable `OOBR_heap` is assigned the value of `buff4[100]`, which reads memory out of bounds in the `buff4` array. This can lead to unexpected behavior or memory corruption.
+
+8. Out of bound write (stack):
+   - In line 58, `buff3[size3+100]` is assigned the value of `'c'`, which writes memory out of bounds in the `buff3` array. This can lead to memory-related errors or even a segmentation fault.
+
+9. Out of bound write (heap):
+   - In line 59, `buff4[100]` is assigned the value of `'c'`, which writes memory out of bounds in the `buff4` array. This can lead to unexpected behavior or memory corruption.
+
+10. Memory leak:
+    - In line 65, if `size3` is greater than 10, `buff4` is set to null instead of freeing it, leading to a memory leak.

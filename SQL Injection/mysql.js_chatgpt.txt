@@ -1,0 +1,16 @@
+
+
+The code has a SQL injection vulnerability in all three methods. The user input (userId) is directly used in constructing SQL queries without proper sanitization or validation. An attacker can manipulate the input to execute malicious SQL queries, leading to data breaches or data manipulation. 
+
+To fix the vulnerability, parameterized queries should be used instead of concatenating user input directly with the SQL query. This will sanitize the input data and prevent SQL injection attacks. For example, the first method can be modified as follows:
+
+router.get('/example1/user/:id', (req,res) => {
+    let userId = req.params.id;
+    let query = {
+        sql : "SELECT * FROM users WHERE id= ?",
+        values: [userId]
+    }
+    connection.query(query,(err, result) => {
+        res.json(result);
+    });
+})

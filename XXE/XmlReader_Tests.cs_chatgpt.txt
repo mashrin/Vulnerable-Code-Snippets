@@ -1,0 +1,11 @@
+
+
+The code contains XML External Entity (XXE) vulnerabilities.
+
+In the method "XMLReader_WithDTDProcessingParseAndXmlResolverSet_NotSafe", the XmlReaderSettings object has the DtdProcessing set to Parse which can allow an attacker to inject a malicious DTD and perform XXE attacks. Similarly, the XmlResolver is set to a new XmlUrlResolver which can be abused to download and parse an external XML entity.
+
+In the method "XMLReader_WithDTDProcessingIgnored_Safe", the DtdProcessing is set to Ignore which makes it safe but the test method itself is not safe as it is not throwing an exception for a malicious input.
+
+In the method "XMLReader_WithDTDProcessingProhibited_Safe", the DtdProcessing is set to Prohibit which again is safe but the test method is not safe as it is not throwing an exception for a malicious input.
+
+To fix the vulnerabilities, the DtdProcessing should be set to DtdProcessing.Prohibit and XmlResolver should be set to null. The test methods should throw an exception for a malicious input to ensure safety.

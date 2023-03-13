@@ -1,0 +1,19 @@
+
+
+1. Integer overflow: The variable size1 is assigned the sum of img.width and img.height, which can result in an integer overflow if both values are sufficiently large.
+
+2. No data buffer size/malloc success check: The memcpy function copies data from img.data to buff1 without checking if the size of img.data is larger than buff1 or if the malloc function has allocated memory correctly.
+
+3. Double free: The if statement following the memcpy function checks if size1 divided by 2 is equal to zero. If it is true, then the function attempts to free the buff1 pointer, but buff1 has already been freed in the if statement before. Thus, this is a double-free vulnerability.
+
+4. Use after free: If size1 is equal to 123456, then buff1[0] is assigned the value 'a', which is a use after free vulnerability since buff1 has been freed in the previous if statement.
+
+5. Integer underflow: The variable size2 is assigned the difference between img.width and img.height, which can result in an integer underflow if img.height is greater than img.width.
+
+6. Out of bound read: The char variable OOBR_stack is assigned buff3[size3+100]. This can result in an out-of-bound read vulnerability because the size of buff3 is only 10, but the program tries to access elements beyond its bounds.
+
+7. Out of bound write: The char variable OOBR_heap is assigned buff4[100]. This can result in an out-of-bound write vulnerability because the memory allocated for buff4 may not be large enough to hold data beyond the first 100 bytes.
+
+8. Memory leak: If size3 is greater than 10, the pointer buff4 is set to 0 without being freed first, resulting in a memory leak. 
+
+In summary, the code is susceptible to integer overflow/underflow, memory leaks, use-after-free, double-free, and out-of-bound read/write vulnerabilities that can be fixed by careful programming and input validation.

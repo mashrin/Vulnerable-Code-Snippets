@@ -1,0 +1,23 @@
+
+
+Security Vulnerabilities:
+
+1. Integer overflow: The variable size1 is calculated as the sum of two integers img.width and img.height, without checking if the sum exceeds the maximum value that an integer can store. This can lead to an integer overflow vulnerability, which can be abused by an attacker to execute arbitrary code or crash the program.
+
+2. No data buffer size/malloc success check: The data buffer img.data is copied into the dynamically allocated buffer buff1 using memcpy, but there is no check whether the malloc() function succeeded in allocating the required memory for buff1. This can lead to a buffer overflow vulnerability, in case the allocated memory is less than the required size.
+
+3. Double free: If the condition size1/2==0 is true, buff1 is freed twice. This can lead to a double-free vulnerability, which can be used by an attacker to corrupt the heap memory and execute arbitrary code.
+
+4. Use after free: In case size1 is equal to 123456, the first byte of buff1 is modified after it has already been freed. This can lead to a use after free vulnerability, which can be exploited to execute arbitrary code.
+
+5. Integer underflow: The variable size2 is calculated as the difference between img.width and img.height plus 100, without checking whether img.width is smaller than img.height. This can lead to an integer underflow vulnerability, which can be abused by an attacker to execute arbitrary code or crash the program.
+
+6. Out-of-bound read (stack): The variable OOBR_stack is assigned the value of buff3[size3+100], which can result in an out-of-bound read vulnerability, as the size of buff3 is only 10, but it is being accessed at an index of size3+100.
+
+7. Out-of-bound read (heap): The variable OOBR_heap is assigned the value of buff4[100], which can lead to an out-of-bound read vulnerability if buff4 is not allocated enough memory.
+
+8. Out-of-bound write (stack): The value 'c' is assigned to buff3[size3+100], which can result in an out-of-bound write vulnerability, as the size of buff3 is only 10, but it is being modified at an index of size3+100.
+
+9. Out-of-bound write (heap): The value 'c' is assigned to buff4[100], which can lead to an out-of-bound write vulnerability if buff4 is not allocated enough memory.
+
+10. Memory leak: If size3 is greater than 10, the pointer buff4 is assigned the value 0, without freeing the memory allocated to it. This can lead to a memory leak vulnerability, which can cause the program to crash or run out of memory.

@@ -1,0 +1,11 @@
+
+
+Security vulnerabilities:
+
+1. The code allows user input to be directly included as a file using the "include" function, which is a potential attack vector for Local File Inclusion (LFI) vulnerabilities. An attacker could modify the "page" parameter to include any file on the server's file system, allowing them to read sensitive files or execute malicious code.
+
+2. There is no input validation or sanitization for the "page" parameter, which means an attacker can use various techniques to bypass input validation and inject malicious code into the parameter.
+
+3. Including files relative to the current directory using "../" could allow an attacker to include files outside of the intended directory, leading to further exploitation opportunities. 
+
+4. Finally, there is no error checking or handling for failing to include files, which could lead to broken functionality or expose sensitive information in error messages.

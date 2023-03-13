@@ -1,0 +1,9 @@
+
+
+Security vulnerability:
+- Cross-site scripting (XSS) vulnerability due to directly injecting the user input `userInfo` into the response body without proper encoding or validation.
+
+Possible fix:
+- Encode the user input using HTML encoding to prevent XSS attacks. For example, use `HttpUtility.HtmlEncode` method in .NET to encode the input. 
+- Use input validation to check for any malicious content or patterns in the input, and reject or sanitize it if necessary. 
+- Consider using a Content Security Policy (CSP) header to further restrict the content that can be loaded by the browser.

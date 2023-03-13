@@ -1,0 +1,17 @@
+
+
+1. API Key Leakage: The code reads an API key from a file named "api" using the file stream `FILE *f = fopen("api","r")`. If an attacker gains access to the system, they can easily obtain the API key.
+
+2. Read Buffer Overflow: The code reads user input into a fixed size buffer of 300 bytes using `scanf("%300s", user_buf);`. If the user enters more than 300 characters, it will overflow the buffer causing memory corruption and potentially allowing an attacker to execute arbitrary code.
+
+3. Uninitialized Memory: When `Stonk *stonk = malloc(sizeof(Stonk));` is called, the memory allocated is uninitialized, which creates a potential for undefined behavior.
+
+4. Off By One Error: In `for (int i = 0; i <= MAX_SYM_LEN; i++)`, using `<=` instead of `<` allows the loop to write one extra character to `stonk->symbol`, which can cause an overflow or other undefined behavior.
+
+5. Integer Overflow: In `shares = (rand() % money) + 1;`, if `money` is very large, it can cause an integer overflow leading to undefined behavior.
+
+6. Potential Memory Leak: When calling `pick_symbol_with_AI(shares)` in `buy_stonks(Portfolio *p)`, the function allocates memory for a new `Stonk` but doesn't free it if the function fails.
+
+7. Potential Null Pointer Dereference: In `view_portfolio(Portfolio *p)`, if `p` is NULL, it will result in a null pointer dereference when trying to access `p->head`.
+
+8. Buffer Overflow: In `char symbol[MAX_SYM_LEN + 1];`, `symbol` can hold up to `MAX_SYM_LEN` characters but the code doesn't limit the input to that size, thus creating a potential buffer overflow.

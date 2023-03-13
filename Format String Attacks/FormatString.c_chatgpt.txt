@@ -1,0 +1,3 @@
+
+
+The vulnerability in this code is a format string vulnerability. The printf function uses the user input from argv[1] as a format string to be printed, but the user input is not checked and may contain format specifiers that could lead to a memory leak or other security issues. It’s important to validate and sanitize user input before using it in a format string.

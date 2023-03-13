@@ -1,0 +1,5 @@
+
+
+1. The code is vulnerable to SQL injection as it directly uses user input in the SQL query without proper validation or sanitization.
+2. The use of mysql_query() function is deprecated and non-secure.
+3. The computeHash() function is unknown, and it could potentially be a security vulnerability if it's not implemented securely.

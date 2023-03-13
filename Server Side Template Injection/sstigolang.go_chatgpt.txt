@@ -1,0 +1,6 @@
+
+
+1. Command Injection: The `Secret` function takes a user-provided `test` string and executes it as a command without proper validation. This can allow an attacker to execute arbitrary commands on the system, leading to Command Injection vulnerabilities.
+2. Input Validation: The `main` function reads a user-provided string from `os.Stdin` and passes it to the `template.New()` function as the argument without performing any input validation. This can lead to input validation vulnerabilities.
+
+To fix these vulnerabilities, it is recommended to implement proper input validation and sanitization measures for all user inputs. Additionally, it is essential to validate user input parameters before passing to the functions. To avoid Command Injection vulnerabilities, it is recommended to use a safe version of the `exec.Command()` function and validate the user's input against a whitelist of allowed commands.

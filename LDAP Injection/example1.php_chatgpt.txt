@@ -1,0 +1,3 @@
+
+
+The code snippet is vulnerable to LDAP injection as it takes the user input directly from the GET request without any validation or sanitization. An attacker can easily manipulate the input to perform unauthorized LDAP queries by modifying the $dn parameter. To fix this vulnerability, input validation and sanitization must be applied to the $dn parameter before using it in LDAP queries.

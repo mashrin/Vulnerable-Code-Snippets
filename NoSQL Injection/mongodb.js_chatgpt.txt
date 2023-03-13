@@ -1,0 +1,7 @@
+
+
+1. In the `router.post('/customers/register')` function, there is no input validation done for the `req.body.name` and `req.body.address` fields, which could lead to injection attacks. These inputs must be validated and sanitized before inserting data into the database.
+
+2. In the `router.post('/customers/find')` function, there is no validation or sanitization done to the `req.body.name` input before passing it to the database query. An attacker may inject a malicious query in this field, leading to an injection attack. This input must also be validated and sanitized before passing it to the query.
+
+3. In the `router.post('/customers/login')` function, it is vulnerable to an authentication bypass attack. The username and password are taken as plain text inputs, and the `findOne` function directly searches for it in the database. An attacker can bypass authentication by passing a malicious query as the input parameter, like in the example CURL command given in the code. Proper input validation and sanitization must be done, and a secure authentication mechanism must be implemented to prevent such attacks.

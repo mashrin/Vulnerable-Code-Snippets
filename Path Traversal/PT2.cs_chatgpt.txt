@@ -1,0 +1,3 @@
+
+
+The code is vulnerable to Path Traversal attack. An attacker can craft a malicious input by manipulating "../" characters in the userInput parameter to access and delete any arbitrary file outside of the RootFolder directory. Thus, the code should validate and sanitize the userInput parameter to allow only legitimate input.

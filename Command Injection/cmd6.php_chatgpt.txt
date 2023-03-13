@@ -1,0 +1,3 @@
+
+
+One potential security vulnerability is the use of user input ($_POST["domain"]) directly in the system call without proper input validation or sanitization. An attacker could inject harmful commands into the domain input field and potentially execute them on the server. The regular expression used to validate the input may not catch all malicious inputs. Additionally, the use of system() function to run arbitrary commands can also be a security risk.

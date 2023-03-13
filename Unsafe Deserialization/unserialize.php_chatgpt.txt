@@ -1,0 +1,6 @@
+
+
+1. The code does not declare File class, which can be a vulnerability.
+2. The code does not perform input validation and sanitization for the $_GET['page'] parameter which can lead to a variety of security issues such as Cross-Site Scripting (XSS) and Remote Code Execution (RCE).
+3. The code includes a filename that can be manipulated to disclose sensitive information or execute unauthorized code.
+4. There is no error handling in case the file inclusion fails, which can lead to error messages that reveal sensitive information or assist attackers in performing a successful attack.

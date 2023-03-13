@@ -1,0 +1,5 @@
+
+
+The code does not properly validate the input ZipFile, which could allow an attacker to extract malicious files to arbitrary locations on the system by modifying the ZipFile. Specifically, the code does not check if the ZipFile contains paths that escape the target directory specified in the "toDir" variable. This can be exploited by an attacker to extract files to locations outside the intended target directory. 
+
+To fix this vulnerability, the code should validate each ZipEntry path to ensure it falls within the intended target directory before extracting it. One way to do this is to use the "getCanonicalPath" method to resolve any potentially tricky paths and ensure they start with the intended target directory.

@@ -1,0 +1,5 @@
+
+
+Security Vulnerabilities:
+1. Buffer overflow: The sprintf function does not check the length of the input string and writes it into the buffer, which can cause a buffer overflow if the input string is too long.
+2. Unintended printing: The printf function is called with the "check" variable, but it should be called with the "buffer" variable to print the input string. This can result in unintended printing and potentially reveal sensitive information.

@@ -1,0 +1,34 @@
+
+
+1. Code Injection:
+The vulnerability in the code is a code injection attack that is present in the following code line
+```
+    if (mb_strpos($image, "<?") !== FALSE) {
+        die("why would you need php in a pic.....");
+    }
+```
+An attacker can insert PHP code into an image file and upload it. The `if (mb_strpos($image, "<?") !== FALSE)` line is supposed to detect when there are PHP tags in an image, however, it can be bypassed using any other format of PHP tags like <?=, <% and so on.
+
+2. Directory Traversal:
+A possible directory traversal vulnerability exists in the following code line
+```
+$userdir = "images/{$_SESSION["home"]}/";
+if (!file_exists($userdir)) {
+    mkdir($userdir);
+}
+```
+An attacker can include the navigation sequence ../../ in the parameter, which will bypass the validation check 'if (!file_exists($userdir))' and allow the attacker to upload the file one level above the intended directory.
+
+3. Arbitrary File Upload:
+An attacker can submit a malicious file such as a web shell script instead of an image file and then execute that file in the server's context. There are no checks to ensure that the uploaded file is actually an image file.
+
+4. Lack of Input Validation:
+The file extension is not being checked properly as the code is only checking the extension of the uploaded file but not the MIME type of the file. An attacker can change the extension of the file to bypass this check and upload any type of malicious file. 
+
+5. Lack of XSS protection:
+No sanitization of user input is being performed, which could lead to reflected XSS attacks using the $userdir variable. 
+
+6. Insecure Direct Object Reference:
+The session home value is predictable and can be manipulated by an attacker. This exposes the site to directory traversal attacks as the attacker can guess and access other valid session values. 
+
+Overall, the code needs extensive input validation, proper checks for uploaded files, and sanitization of user input to prevent any potential security vulnerabilities.

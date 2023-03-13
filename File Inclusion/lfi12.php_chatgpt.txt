@@ -1,0 +1,3 @@
+
+
+The security vulnerability in this code is the use of $_GET['stylepath'] as a parameter for the include function. This allows an attacker to manipulate the stylepath parameter to include any file on the server, allowing for Local File Inclusion (LFI) attacks. It is recommended to sanitize user input and validate the input before using it in any functions.

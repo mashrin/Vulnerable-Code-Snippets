@@ -1,0 +1,5 @@
+
+
+The vulnerability in this code is that the input function `scanf` does not limit the amount of characters that can be entered, thus leaving the program open to a buffer overflow attack. This means that an attacker could potentially enter more characters than the allocated 64 bytes for the `name` variable, causing unintended behavior and possibly allowing the attacker to execute arbitrary code. 
+
+To fix this vulnerability, a secure input function that limits the amount of characters entered should be used, such as `fgets`. Additionally, the `Sanitize` function should be reviewed to ensure that it is properly sanitizing the input and preventing any potential injection attacks.

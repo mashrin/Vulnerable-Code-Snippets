@@ -1,0 +1,12 @@
+
+
+The security vulnerability in the above code snippets is SQL injection. The code concatenates or formats user-defined data (username) into the query string, which can be exploited by an attacker to inject malicious SQL code to perform unauthorized actions, such as dropping tables, modifying data, or bypassing authentication. To prevent SQL injection, the code should use prepared statements with parameterized queries where user input is treated as a parameter, rather than a string to be concatenated or formatted into the query. For example:
+
+// Get username from parameters
+String username = request.getParameter("username");
+// Create a prepared statement with parameterized query
+PreparedStatement statement = connection.prepareStatement("SELECT secret FROM Users WHERE (username = ? AND NOT role = 'admin')");
+// Set the parameter value
+statement.setString(1, username);
+// Execute the query and return the results
+ResultSet result = statement.executeQuery();

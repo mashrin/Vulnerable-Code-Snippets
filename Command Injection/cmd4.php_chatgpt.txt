@@ -1,0 +1,7 @@
+
+
+There are two main security vulnerabilities in this code snippet:
+
+1. The use of the system() function with user-inputted data ($_POST["domain"]) can lead to command injection vulnerabilities. An attacker could potentially inject malicious commands into the $_POST["domain"] parameter and have them executed by the server.
+
+2. The inclusion of "../common/header.php" could potentially allow an attacker to access files outside of the intended scope, depending on the file permissions and directory structure of the web application.

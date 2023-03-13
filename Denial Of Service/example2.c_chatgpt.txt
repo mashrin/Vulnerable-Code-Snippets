@@ -1,0 +1,12 @@
+
+
+Security Vulnerabilities:
+
+1. Buffer Overflow: The input can be larger than 64 bytes which can cause a buffer overflow and may lead to a Remote Code Execution (RCE) vulnerability.
+2. Input Validation: There is no input validation on the user input. The user can enter any input which would be converted to an integer value and used as input to the sleep function. This can lead to integer overflow and result in a Denial of Service (DoS) attack.
+
+Recommendation:
+
+1. Use safer functions to read input instead of "cin". For example, "fgets" with "stdin" and set the limit to the size of the buffer to prevent buffer overflow. 
+2. Use a validation function to check input limits and data types before converting them to integers or other data types. 
+3. Add a timeout parameter to the sleep function or limit the value to a maximum value to prevent DoS attacks.

@@ -1,0 +1,20 @@
+
+
+Potential vulnerabilities in this code include:
+
+1. Unvalidated file type: The code only checks for three file extensions (.jpg, .jpeg, .png) and assumes that any file with one of these extensions is an image. However, it is possible for attackers to upload malicious files with these extensions, such as a .php file disguised as an image. This can lead to remote code execution if the uploaded file is executed on the server.
+
+2. Unvalidated file size: The code only checks that the uploaded file is less than 100000 bytes in size. However, this is not a reliable method of ensuring that the file is not too large or that it is not a file bomb. Attackers can upload large files that can exhaust server resources or small files that contain malicious code.
+
+3. Insecure file upload path: The code does not specify a secure upload path for the uploaded files. This can allow attackers to upload files to sensitive directories, such as the root directory or other directories that contain sensitive files.
+
+4. Lack of error handling: The code does not handle errors that may occur during the file upload process, such as network errors or disk full errors. This can result in unexpected behavior or crashes on the server. 
+
+To fix these vulnerabilities, the code should be modified to:
+1. Validate the file type using a trusted library or checking the file header instead of relying on the file extension. 
+
+2. Validate the file size against a maximum allowed size or use a secure method of limiting file upload size.
+
+3. Specify a secure upload path for the uploaded files, such as a directory with restricted permissions.
+
+4. Implement error handling for file upload errors, such as displaying a user-friendly error message and logging the error for debugging purposes.

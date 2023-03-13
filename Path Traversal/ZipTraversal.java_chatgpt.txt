@@ -1,0 +1,11 @@
+
+
+1. Directory Traversal vulnerability: The code does not check if the zip file contains any "../" or "..." sequences in the zipEntry.getName() before creating a new File object. This could potentially lead to unauthorized extraction of files to locations outside the intended target directory, if an attacker is able to manipulate the zip file.
+
+2. Resource Leak vulnerability: The code opens an InputStream and a BufferedOutputStream for each ZipEntry, but does not close them explicitly, which can lead to resource leaks and exhaustion of system resources. It is recommended to use try-with-resources or finally blocks to close the InputStream and the BufferedOutputStream.
+
+3. Path Traversal vulnerability: The code uses a hardcoded target directory "/my/target/directory/", which could allow an attacker to use a symlink or other malicious redirection to access or overwrite target files on the system.
+
+4. Zip Slip vulnerability: The code does not check for any "zip slip" related issues which occur when an attacker places files outside of the expected extraction folder as part of a zip archive. This can lead to malicious files being extracted to unexpected destinations on the system.
+
+Therefore, it is recommended to implement proper input validation and secure coding practices to mitigate these vulnerabilities.

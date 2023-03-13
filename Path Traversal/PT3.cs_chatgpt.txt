@@ -1,0 +1,5 @@
+
+
+The code is vulnerable to Path Traversal attack, as it accepts user input directly into the path, which could result in a malicious user traversing to any directory on the system and writing files or reading sensitive information. 
+
+To fix this vulnerability, the user input should be validated and sanitized before being used in the path to avoid any special character or malicious code execution. The recommended approach is to use a whitelist of allowed characters and disallow any user input that is not in the whitelist.

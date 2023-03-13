@@ -1,0 +1,3 @@
+
+
+The security vulnerability in this code is that it allows for Local File Inclusion (LFI) attacks. An attacker can manipulate the "library" GET parameter by appending "../" to access files outside of the intended directory, or by inserting a NULL byte (%00) to bypass file extension restrictions and execute arbitrary code. This can lead to the disclosure of sensitive information or even complete system compromise. The code should sanitize and validate the input before including the file.

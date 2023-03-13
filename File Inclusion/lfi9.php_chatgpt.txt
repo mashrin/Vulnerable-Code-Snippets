@@ -1,0 +1,3 @@
+
+
+The security vulnerability in this code is that it is vulnerable to Local File Inclusion (LFI) attacks. The attacker can modify the POST parameter "class" to include a file path of their choosing, and if not properly sanitized, the code will include that file in the script execution. This can allow the attacker to execute arbitrary code on the server or access sensitive information from files on the server. Using addslashes to escape the POST parameter is not enough to prevent LFI attacks as it can be defeated with a NULL byte (%00) at the end of the input. A better approach would be to use a whitelist of allowed file paths or sanitize the input using a robust library function like filter_input().

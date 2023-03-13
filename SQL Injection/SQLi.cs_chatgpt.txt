@@ -1,0 +1,29 @@
+
+
+The code snippet has a SQL injection vulnerability. The parameter "id" that is passed in the SQL query is not sanitized, and it is concatenated directly with the SQL query string. This means that an attacker can inject malicious SQL code into the query, potentially leading to data disclosure or manipulation.
+
+To fix this vulnerability, the application should use parameterized queries instead of concatenating strings. In parameterized queries, the query placeholders are replaced with input parameters, and the input values are properly sanitized and validated before they are sent to the database. This prevents attackers from injecting malicious code into the query.
+
+For example, the vulnerable code snippet can be fixed as follows:
+
+[HttpGet("{id}")]
+public string DoSqli(string id)
+{
+  string conString = "I AM a connection String";
+  string query = "SELECT * FROM users WHERE userId = @userId";
+  using (SqlConnection con = new SqlConnection(conString))
+  {
+    con.Open();
+    using (SqlCommand cmd = new SqlCommand(query, con))
+    {
+      cmd.Parameters.AddWithValue("@userId", id);
+      SqlDataReader reader = cmd.ExecuteReader();
+      string res = "";
+      while (reader.Read())
+      {
+        res += reader["userName"];
+      }
+      return res;
+    }
+  }
+}
